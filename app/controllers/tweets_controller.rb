@@ -32,16 +32,24 @@ class TweetsController < ApplicationController
       end
     end
   end
+
+def update
+  respond_to do |format|
+    if @tweet.update(tweet_params)
+      format.html {redirect_to @tweet, notice: "Tweet was successfully updated."}
+    else
+      format.html (render :edit)
+    end
+  end
 end
 
 private
 
   def set_tweet
     @tweet = Tweet.find(params[:id])
-
-    end
-
-  def tweet_params
-      params.require(:tweet).permit(:message, :user_id)
   end
 
+  def tweet_params
+    params.require(:tweet).permit(:message, :user_id)
+  end
+end
