@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    # This sets @user to a user based on their id
       @user = User.find(params[:id])
   end
 end
